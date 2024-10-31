@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-INSTALLED_APPS += ['home', 'pessoa', 'funcionario', 'vitima'
+INSTALLED_APPS += ['home', 'pessoa', 'funcionario', 'vitima',
 ]
 
-INSTALLED_APPS += ['django_bootstrap5','stdimage']
+INSTALLED_APPS += ['django_bootstrap5','stdimage',]
 
 
 MIDDLEWARE = [
