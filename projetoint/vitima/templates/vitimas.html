@@ -6,10 +6,10 @@
         <div class="container">
             <form action="" method="GET">
                 <div class="form-group row p-3">
-                    <label class="col-sm-2 col-form-label">Nome do cliente: </label>
+                    <label class="col-sm-2 col-form-label">Nome da vitima: </label>
                     <div class="col-sm-8">
                         <input class="form-control" type="text" name="buscar" value="{{ request.GET.buscar }}"
-                               placeholder="Digite o nome do cliente">
+                               placeholder="Digite o nome da vitima">
                     </div>
                     <div class="col-sm-2">
                         <button type="submit" class="btn btn-primary">
@@ -20,7 +20,7 @@
             </form>
             {% if object_list %}
                 <div class="card-body">
-                    <h3 class="text-center">Clientes Cadastrados</h3>
+                    <h3 class="text-center">Vitimas Cadastradas</h3>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="table-success">
@@ -30,39 +30,39 @@
                                 <th style="width: 100px; text-align: center">Ações</th>
                             </thead>
                             <tbody>
-                                {% for cliente in object_list %}
+                                {% for vitima in object_list %}
                                     <tr>
-                                        <td> <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{cliente.id}}">
-                                            {{cliente.nome }}</a>
+                                        <td> <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{vitimas.id}}">
+                                            {{vitima.nome }}</a>
                                         </td>
-                                        <td> {{ cliente.fone }}</td>
-                                        <td> {{ cliente.email }}</td>
+                                        <td> {{ vitima.fone }}</td>
+                                        <td> {{ vitima.email }}</td>
                                         <td style="text-align: center">
-                                            <a href="{% url 'cliente_editar' cliente.pk%}">
+                                            <a href="{% url 'vitima_editar' vitima.pk %}">
                                                 <span class="icon">
-                                                    <i class="fas fa-edit"></i>
+                                                    <i class="bi bi-clipboard2"></i>
                                                 </span>
                                             </a>
-                                            <a href="{% url 'cliente_apagar' cliente.pk %}">
+                                            <a href="{% url 'vitima_apagar' vitima.pk %}">
                                                 <span class="icon">
-                                                    <i class="far fa-trash-alt"></i>
+                                                    <i class="bi bi-trash3"></i>
                                                 </span>
                                             </a>
                                         </td>
-                                        <div class="modal" tabindex="-1" id="modal{{cliente.id}}">
+                                        <div class="modal" tabindex="-1" id="modal{{vitima.id}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Cliente: {{cliente.nome}}</h5>
+                                                        <h5 class="modal-title">vitima: {{vitima.nome}}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body d flex justify-content-center">
                                                         <div>
-                                                            {% if cliente.foto.url is not empty %}
-                                                                <img src="{{ cliente.foto.url }}" class="img-thumbnail" width="100" height="100" alt=""/>
+                                                            {% if vitima.foto.url is not empty %}
+                                                                <img src="{{ vitima.foto.url }}" class="img-thumbnail" width="100" height="100" alt=""/>
                                                             {% endif %}
-                                                            <h6><strong>Fone:</strong>{{cliente.fone}}</h6>
+                                                            <h6><strong>Fone:</strong>{{vitima.fone}}</h6>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -79,7 +79,7 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center">
-                        {% bootstrap_pagination object_list url="/clientes?page=1" size="sm" %}
+                        {% bootstrap_pagination object_list url="/vitima?page=1" size="sm" %}
                     </div>
                 </div>
             {% endif %}

@@ -13,7 +13,7 @@ from django.urls import reverse_lazy
 # Create your views here.
 class VitimasView(ListView):
     model = Vitima
-    template_name = 'funcionarios.html'
+    template_name = 'vitimas.html'
 
     def get_queryset(self):
         buscar = self.request.GET.get('buscar')
@@ -34,18 +34,18 @@ class VitimaAddView(SuccessMessageMixin,CreateView):
     model = Vitima
     form_class = VitimaModelForm
     template_name = 'vitima_form.html'
-    success_url = reverse_lazy('Vitimas')
+    success_url = reverse_lazy('vitimas')
     success_message = 'Vitima cadastrado com sucesso!'
 
 class VitimaUpdateView(SuccessMessageMixin,UpdateView):
     model = Vitima
     form_class = VitimaModelForm
     template_name = 'vitima_form.html'
-    success_url = reverse_lazy('Vitimas')
+    success_url = reverse_lazy('vitimas')
     success_message = 'Vitima alterado com sucesso!'
 
 class VitimaDeleteView(SuccessMessageMixin,DeleteView):
     model = Vitima
-    template_name = 'vitimas_apagar.html'
+    template_name = 'vitima_apagar.html'
     success_url = reverse_lazy('vitimas')
     success_message = 'Vitima cadastrado com sucesso!'

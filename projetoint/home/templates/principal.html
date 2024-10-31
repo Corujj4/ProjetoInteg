@@ -5,55 +5,57 @@
   {% block head %}
     {% include "head.html" %}
   {% endblock %}
-    <body>
+    <body class = "">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <div class="container-fluid">
-		<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-		  <ul class="navbar-nav">
-				<li class="nav-item dropdown">
-			  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Chamados
-			  </a>
-			  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-				<li><a class="dropdown-item" href="#">Visualizar Chamado</a></li>
-				<li><a class="dropdown-item" href="#">Cadastrar Chamado</a></li>
-			  </ul>
+	  		<div class="container-fluid">
+				<a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+				  <ul class="navbar-nav">
+						<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Chamados
+					  </a>
+					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						<li><a class="dropdown-item" href="#">Visualizar Chamado</a></li>
+						<li><a class="dropdown-item" href="#">Cadastrar Chamado</a></li>
+					  </ul>
 
-			</li>
-			  	<li class="nav-item dropdown">
-			  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Vitimas
-			  </a>
-			  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-				<li><a class="dropdown-item" href="#">Visualizar Vitima</a></li>
-				<li><a class="dropdown-item" href="#">Cadastrar Vitima </a></li>
-			  </ul>
+					</li>
+						<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Vitimas
+					  </a>
+					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						<li><a class="dropdown-item" href="{% url 'vitimas' %}">Visualizar Vitima</a></li>
+						<li><a class="dropdown-item" href="{% url 'vitima_adicionar' %}">Cadastrar Vitima </a></li>
+					  </ul>
 
-			</li>
-			 	 <li class="nav-item dropdown">
-			  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Funcionarios
-			  </a>
-			  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-				<li><a class="dropdown-item" href="#">Visualizar Funcionario</a></li>
-				<li><a class="dropdown-item" href="#">Cadastrar Funcionario</a></li>
-			  </ul>
+					</li>
+						 <li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Funcionarios
+					  </a>
+					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						<li><a class="dropdown-item" href="{% url 'funcionarios' %}">Visualizar Funcionario</a></li>
+						<li><a class="dropdown-item" href="{% url 'funcionario_adicionar' %}">Cadastrar Funcionario</a></li>
+					  </ul>
 
-			</li>
-			  	<li class="nav-item dropdown">
-			  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Estoque
-			  </a>
-			  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-				<li><a class="dropdown-item" href="#">Visualizar Estoque</a></li>
-				<li><a class="dropdown-item" href="#">Cadastrar Item</a></li>
-			  </ul>
+					</li>
+						<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Estoque
+					  </a>
+					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						<li><a class="dropdown-item" href="#">Visualizar Estoque</a></li>
+						<li><a class="dropdown-item" href="#">Cadastrar Item</a></li>
+					  </ul>
 
-			</li>
-		  </ul>
-		</div>
+					</li>
+				  </ul>
+				</div>
 	  </div>
 </nav>
+
         {% block content %} {% endblock %}
 
         {% block footer %}
