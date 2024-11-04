@@ -22,5 +22,12 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('funcionario.urls')),
     path('', include('vitima.urls')),
+    path('', include('produtos.urls')),
+    path('', include('chamados.urls')),
+
+
+
+
+
 
 ]

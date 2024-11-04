@@ -16,8 +16,8 @@
 						Chamados
 					  </a>
 					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-						<li><a class="dropdown-item" href="#">Visualizar Chamado</a></li>
-						<li><a class="dropdown-item" href="#">Cadastrar Chamado</a></li>
+						<li><a class="dropdown-item" href="{%  url 'chamado' %}">Visualizar Chamado</a></li>
+						<li><a class="dropdown-item" href="{%  url 'chamado_adicionar' %}">Cadastrar Chamado</a></li>
 					  </ul>
 
 					</li>
@@ -46,8 +46,10 @@
 						Estoque
 					  </a>
 					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-						<li><a class="dropdown-item" href="#">Visualizar Estoque</a></li>
-						<li><a class="dropdown-item" href="#">Cadastrar Item</a></li>
+						<li><a class="dropdown-item" href="{% url 'produtos' %}">Visualizar Estoque</a></li>
+						<li><a class="dropdown-item" href="{% url 'remedio_adicionar' %}">Cadastrar Remedio</a></li>
+                        <li><a class="dropdown-item" href="{% url 'mantimento_adicionar' %}">Cadastrar Mantimento</a></li>
+                        <li><a class="dropdown-item" href="{% url 'roupa_adicionar' %}">Cadastrar Roupa</a></li>
 					  </ul>
 
 					</li>
