@@ -24,15 +24,19 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="table-success">
-                                <th>Situacao</th>
+                                <th>Status</th>
                                 <th>Prioridade</th>
+                                <th>Funcionario </th>
+                                <th>Vitima</th>
                                 <th style="width: 100px; text-align: center">Ações</th>
                             </thead>
                             <tbody>
                                 {% for chamado in object_list %}
                                     <tr>
-                                        <td>{{chamado.situacao }}</td>
-                                        <td> {{ chamado.prioridade }}</td>
+                                        <td>{{ chamado.status }}</td>
+                                        <td> ({{ chamado.prioridade }})</td>
+                                        <td> {{ chamado.funcionario }}</td>
+                                        <td> {{ chamado.vitima }}</td>
                                         <td style="text-align: center">
                                             <a href="">
                                                 <span class="icon">
@@ -49,7 +53,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">chamado: {{chamado.descricao}}</h5>
+                                                        <h5 class="modal-title">chamado: {{ chamado.descricao }}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>

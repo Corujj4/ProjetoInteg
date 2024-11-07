@@ -1,8 +1,6 @@
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-
-
 from .forms import RemedioModelForm, RoupaModelForm, MantimentoModelForm
 from .models import Remedio, Roupa, Mantimento, Produtos
 from django.contrib.messages.views import SuccessMessageMixin
