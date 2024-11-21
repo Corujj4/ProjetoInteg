@@ -33,17 +33,18 @@
                             <tbody>
                                 {% for chamado in object_list %}
                                     <tr>
-                                        <td>{{ chamado.status }}</td>
+                                        <td> <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{chamado.id}}">
+                                            {{chamado.status }}</a>
                                         <td> ({{ chamado.prioridade }})</td>
                                         <td> {{ chamado.funcionario }}</td>
                                         <td> {{ chamado.vitima }}</td>
                                         <td style="text-align: center">
-                                            <a href="">
+                                            <a href="{% url 'chamado_editar' chamado.pk %}">
                                                 <span class="icon">
                                                     <i class="bi bi-clipboard2"></i>
                                                 </span>
                                             </a>
-                                            <a href="">
+                                            <a href="{% url 'chamado_apagar' chamado.pk %}">
                                                 <span class="icon">
                                                     <i class="bi bi-trash3"></i>
                                                 </span>
@@ -53,10 +54,18 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">chamado: {{ chamado.descricao }}</h5>
+                                                        <h5 class="modal-title">Informacoes do chamado </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
+
+                                                    <div class="modal-body d flex justify-content-center">
+                                                         <div>
+                                                            <h6><strong>Descricao : </strong></h6>
+                                                            {{ chamado.descricao}}
+                                                              <h6><strong>Produtos : </strong></h6>
+                                                             {{ chamado.produto}}
+                                                        </div>
                                                     <div class="modal-body d flex justify-content-center">
                                                     </div>
                                                     <div class="modal-footer">

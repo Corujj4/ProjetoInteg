@@ -79,7 +79,7 @@ class MantimentoAddView(SuccessMessageMixin,CreateView):
 class MantimentoUpdateView(SuccessMessageMixin,UpdateView):
     model = Mantimento
     form_class = MantimentoModelForm
-    template_name = 'mantimento_form.html'
+    template_name = 'mantimentos_form.html'
     success_url = reverse_lazy('produtos')
     success_message = 'Mantimento alterado com sucesso!'
 

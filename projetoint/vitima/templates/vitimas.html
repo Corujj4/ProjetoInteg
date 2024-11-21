@@ -32,8 +32,9 @@
                             <tbody>
                                 {% for vitima in object_list %}
                                     <tr>
-                                        <td> <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{vitimas.id}}">
+                                        <td> <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{vitima.id}}">
                                             {{vitima.nome }}</a>
+
                                         </td>
                                         <td> {{ vitima.fone }}</td>
                                         <td> {{ vitima.email }}</td>
@@ -49,7 +50,9 @@
                                                 </span>
                                             </a>
                                         </td>
-                                        <div class="modal" tabindex="-1" id="modal{{vitima.id}}">
+
+                                    </tr>
+                                <div class="modal fade" id="modal{{vitima.id}}" tabindex="-1" aria-labelledby="modal{{vitima.id}}" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -73,8 +76,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </tr>
-                                        {% endfor %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

@@ -2,9 +2,17 @@ from django.db import models
 
 
 class Produtos(models.Model):
+    PRODUTOS_OPCOES = (
+        ('MANTIMENTO', 'MANTIMENTO'),
+        ('REMEDIO', 'REMEDIO'),
+        ('ROUPA', 'ROUPA'),
+    )
     nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', unique=True)
     quantidade = models.DecimalField('quantidade',max_digits=5, decimal_places=2, help_text='quantidade do produtos em estoque')
     descricao = models.TextField('Descrição', max_length=300, help_text='Descricao e observações do produto')
+
+    tipo_de_produto = models.CharField('Tipo', max_length=10, help_text='Tipo de produto',
+                                  choices=PRODUTOS_OPCOES)
 
     class Meta:
         verbose_name = 'Produto'
