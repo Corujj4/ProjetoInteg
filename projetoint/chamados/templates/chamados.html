@@ -23,7 +23,7 @@
                     <h3 class="text-center">Chamados Cadastrados</h3>
                     <div class="table-responsive">
                         <table class="table table-hover">
-                            <thead class="table-success">
+                            <thead class="table table-dark">
                                 <th>Status</th>
                                 <th>Prioridade</th>
                                 <th>Funcionario </th>
@@ -47,6 +47,11 @@
                                             <a href="{% url 'chamado_apagar' chamado.pk %}">
                                                 <span class="icon">
                                                     <i class="bi bi-trash3"></i>
+                                                </span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="icon">
+                                                    <i class="bi bi-check-circle-fill"></i>
                                                 </span>
                                             </a>
                                         </td>

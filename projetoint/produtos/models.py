@@ -7,7 +7,7 @@ class Produtos(models.Model):
         ('REMEDIO', 'REMEDIO'),
         ('ROUPA', 'ROUPA'),
     )
-    nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', unique=True)
+    nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', )
     quantidade = models.DecimalField('quantidade',max_digits=5, decimal_places=2, help_text='quantidade do produtos em estoque')
     descricao = models.TextField('Descrição', max_length=300, help_text='Descricao e observações do produto')
 

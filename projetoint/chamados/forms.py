@@ -18,3 +18,4 @@ class ChamadoModelForm(ModelForm):
             'descricao' : {'required' : 'A descricao é obrigatoria'},
 
         }
+
