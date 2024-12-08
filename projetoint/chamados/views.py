@@ -97,9 +97,9 @@ class ChamadoExibir(DetailView):
     def get_object(self, queryset=None):
         chamado = get_object_or_404(Chamado, pk=self.kwargs['pk'])
 
-        # Atualiza o status do chamado
-        if chamado.status == 'Em andamento':  # Verifica se o chamado ainda está em andamento
-            chamado.status = 'Finalizado'  # Define como finalizado
+
+        if chamado.status == 'Em andamento':
+            chamado.status = 'Finalizado'
             chamado.save()
             '''
             # Envia um e-mail de notificação
