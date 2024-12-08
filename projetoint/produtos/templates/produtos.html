@@ -3,6 +3,7 @@
 {% load static %}
 {% block content %}
 <section class="section" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
         <div class="container">
             <form action="" method="GET">
                 <div class="form-group row p-3">
@@ -19,114 +20,243 @@
                 </div>
             </form>
             {% if object_list %}
-                <div class="card-body">
-                    <h3 class="text-center">Produtos Cadastrados</h3>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table table-dark">
-                                <th>Nome</th>
-                                <th>Descricao</th>
-                                 <th>Tipo</th>
-                                <th style="width: 100px; text-align: center">Ações</th>
-                            </thead>
-                            <tbody>
-                                {% for produtos in object_list %}
-                                    <tr>
-                                        <td> <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{produtos.id}}">
-                                            {{produtos.nome }}</a>
-                                        </td>
-                                        <td> {{ produtos.descricao }}</td>
-                                        <td> {{ produtos.tipo_de_produto }}</td>
-                                        <td style="text-align: center">
-                                             <a href="{% url 'remedio_editar' produtos.pk %}">
-                                                    <span class="icon">
-                                                        <i class="bi bi-clipboard2"></i>
-                                                    </span>
-                                                </a>
-                                             {% if produtos.tipo_de_produto == 'REMEDIO'  %}
-                                                <a href="{% url 'remedio_editar' produtos.pk %}">
-                                                    <span class="icon">
-                                                        <i class="bi bi-clipboard2"></i>
-                                                    </span>
-                                                </a>
-                                                <a href="{% url 'remedio_apagar' produtos.pk %}">
-                                                    <span class="icon">
-                                                        <i class="bi bi-trash3"></i>
-                                                    </span>
-                                                </a>
-                                             {% elif produtos.tipo_de_produto == 'ROUPA'  %}
-                                                <a href="{% url 'roupa_editar' produtos.pk %}">
-                                                    <span class="icon">
-                                                        <i class="bi bi-clipboard2"></i>
-                                                    </span>
-                                                </a>
-                                                <a href="{% url 'roupa_apagar' produtos.pk %}">
-                                                    <span class="icon">
-                                                        <i class="bi bi-trash3"></i>
-                                                    </span>
-                                                </a>
-                                             {% elif produtos.tipo_de_produto == 'MANTIMENTO'  %}
-                                                <a href="{% url 'mantimento_editar' produtos.pk %}">
-                                                    <span class="icon">
-                                                        <i class="bi bi-clipboard2"></i>
-                                                    </span>
-                                                </a>
-                                                <a href="{% url 'mantimento_apagar' produtos.pk %}">
-                                                    <span class="icon">
-                                                        <i class="bi bi-trash3"></i>
-                                                    </span>
-                                                </a>
+                <div class="card-body d-flex justify-content-center gap-4">
 
-                                            {% endif %}
+                            <div>
+                                <h3 class="text-center">Mantimentos Cadastrados</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="table table-dark">
+                                             <th>Adicionar</th>
+                                            <th>Nome</th>
+                                            <th>Descricao</th>
+                                            <th>Categoria</th>
+                                            <th>Validade</th>
+                                            <th style="width: 100px; text-align: center">Ações</th>
+                                        </thead>
+                                        <tbody>
+                                            {% for produtos in object_list %}
+                                                {% if produtos.tipo_de_produto == 'MANTIMENTO' %}
+                                                <tr>
+                                                    <td> <a href="" data-bs-toggle="modal" data-bs-target="#modal{{produtos.id}}">
+                                                         <span class="icon">
+                                                                   <i class="bi bi-collection-fill"></i>
+                                                                </span>
+                                                         </a>
+                                                    </td>
+                                                    <td> {{ produtos.nome }}</td>
+                                                    <td> {{ produtos.descricao }}</td>
+                                                    <td> {{ produtos.mantimento.categoria }}</td>
+                                                    <td> {{ produtos.mantimento.validade }}</td>
+                                                    <td style="text-align: center">
+                                                            <a href="#">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-cart-plus-fill"></i>
+                                                                </span>
+                                                            </a>
+
+                                                            <a href="{% url 'mantimento_editar' produtos.pk %}">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-clipboard2"></i>
+                                                                </span>
+                                                            </a>
+                                                            <a href="{% url 'mantimento_apagar' produtos.pk %}">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-trash3"></i>
+                                                                </span>
+                                                            </a>
+
+                                                        {% endif %}
 
 
 
-                                        </td>
-                                        <div class="modal" tabindex="-1" id="modal{{produtos.id}}">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">produtos: {{produtos.nome}}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body d flex justify-content-center">
-                                                         <div>
+                                                    </td>
+                                                    <div class="modal" tabindex="-1" id="modal{{produtos.id}}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">produtos: {{produtos.nome}}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body d flex justify-content-center">
+                                                                     <div>
 
-                                                            <h6><strong>Descricao : </strong>{{produtos.descricao}}</h6>
+                                                                        <h6><strong>Descricao : </strong>{{produtos.descricao}}</h6>
 
-                                                            {% if produtos.roupa  %}
-                                                                <h6><strong>Tamanho: </strong>{{ produtos.roupa.tamanho }}</h6>
-                                                                <h6><strong>Gênero: </strong>{{ produtos.roupa.genero }}</h6>
+                                                                             {% if produtos.roupa  %}
+                                                                        <h6><strong>Tamanho: </strong>{{ produtos.roupa.tamanho }}</h6>
+                                                                        <h6><strong>Gênero: </strong>{{ produtos.roupa.genero }}</h6>
 
 
-                                                             {% elif produtos.mantimento %}
-                                                                <h6><strong>Validade: </strong>{{ produtos.mantimento.validade }}</h6>
-                                                                <h6><strong>Categoria: </strong>{{ produtos.mantimento.categoria }}</h6>
+                                                                        {% elif produtos.mantimento %}
+                                                                        <h6><strong>Validade: </strong>{{ produtos.mantimento.validade }}</h6>
+                                                                        <h6><strong>Categoria: </strong>{{ produtos.mantimento.categoria }}</h6>
 
-                                                             {% else %}
-                                                                <h6><strong>Validade: </strong>{{ produtos.remedio.validade }}</h6>
-                                                            {% endif %}
+                                                                        {% else %}
+                                                                        <h6><strong>Validade: </strong>{{ produtos.remedio.validade }}</h6>
+                                                                        {% endif %}
+
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secundary" data-bs-dismiss="modal">
+                                                                        fechar
+                                                                    </button>
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                    </div>
+                                                </tr>
+                                                    {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-center">Remedios Cadastrados</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="table table-dark">
+                                            <th>Adicionar</th>
+                                            <th>Nome</th>
+                                            <th>Descricao</th>
+                                            <th>Validade</th>
+                                            <th style="width: 100px; text-align: center">Ações</th>
+                                        </thead>
+                                        <tbody>
+                                            {% for produtos in object_list %}
+                                                {% if produtos.tipo_de_produto == 'REMEDIO' %}
+                                                <tr>
+                                                    <td> <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{produtos.id}}">
+                                                         <span class="icon">
+                                                                   <i class="bi bi-collection-fill"></i>
+                                                         </span>
 
+                                                    </a>
+                                                    </td>
+                                                    <td> {{ produtos.nome }}</td>
+                                                    <td> {{ produtos.descricao }}</td>
+                                                    <td> {{ produtos.remedio.validade }}</td>
+                                                    <td style="text-align: center">
+
+                                                            <a href="#">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-cart-plus-fill"></i>
+                                                                </span>
+                                                            </a>
+
+                                                            <a href="{% url 'remedio_editar' produtos.pk %}">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-clipboard2"></i>
+                                                                </span>
+                                                            </a>
+                                                            <a href="{% url 'remedio_apagar' produtos.pk %}">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-trash3"></i>
+                                                                </span>
+                                                            </a>
+                                                        {% endif %}
+
+
+                                                    </td>
+                                                    <div class="modal" tabindex="-1" id="modal{{produtos.id}}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">produtos: {{produtos.nome}}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body d flex justify-content-center">
+                                                                     <div>
+                                                                        {% if produtos.roupa  %}
+                                                                        <h6><strong>Tamanho: </strong>{{ produtos.roupa.tamanho }}</h6>
+                                                                        <h6><strong>Gênero: </strong>{{ produtos.roupa.genero }}</h6>
+
+
+                                                                        {% elif produtos.mantimento %}
+                                                                        <h6><strong>Validade: </strong>{{ produtos.mantimento.validade }}</h6>
+                                                                        <h6><strong>Categoria: </strong>{{ produtos.mantimento.categoria }}</h6>
+
+                                                                        {% else %}
+                                                                        <h6><strong>Validade: </strong>{{ produtos.remedio.validade }}</h6>
+                                                                        {% endif %}
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secundary" data-bs-dismiss="modal">
+                                                                        fechar
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secundary" data-bs-dismiss="modal">
-                                                            fechar
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </tr>
-                                        {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="d-flex justify-content-center">
+                                                </tr>
+                                                    {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                </div>
+
+                <div class="card-body gap-4">
+                                <h3 class="text-center">Roupas Cadastrados</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="table table-dark">
+                                            <th>Nome</th>
+                                            <th>Descricao</th>
+                                             <th>Tamanho</th>
+                                             <th>Genero</th>
+                                            <th style="width: 100px; text-align: center">Ações</th>
+                                        </thead>
+                                        <tbody>
+                                            {% for produtos in object_list %}
+                                                {% if produtos.roupa.tipo_de_produto == 'ROUPA' %}
+                                                <tr>
+                                                    <tr>
+                                                    <td>{{produtos.nome }}</td>
+                                                    <td> {{ produtos.descricao }}</td>
+                                                    <td> {{ produtos.roupa.tamanho }}</td>
+                                                    <td> {{ produtos.roupa.genero }}</td>
+                                                    <td style="text-align: center">
+                                                            <a href="#">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-cart-plus-fill"></i>
+                                                                </span>
+                                                            </a>
+
+                                                            <a href="{% url 'roupa_editar' produtos.pk %}">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-clipboard2"></i>
+                                                                </span>
+                                                            </a>
+                                                            <a href="{% url 'roupa_apagar' produtos.pk %}">
+                                                                <span class="icon">
+                                                                    <i class="bi bi-trash3"></i>
+                                                                </span>
+                                                            </a>
+
+                                                {% endif %}
+                                                    </td>
+
+                                                </tr>
+                                                    {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                </div>
+
+
+                 <div class="d-flex justify-content-center">
                         {% bootstrap_pagination object_list url="/produtos?page=1" size="sm" %}
                     </div>
-                </div>
             {% endif %}
         </div>
     </section>

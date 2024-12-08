@@ -1,7 +1,8 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib import messages
 from django.views.generic.base import TemplateResponseMixin, View
 from chamados.forms import ChamadoModelForm
@@ -89,3 +90,50 @@ class AgendamentoInlineEditView(TemplateResponseMixin,View):
 '''
 
 
+class ChamadoExibir(DetailView):
+    model = Chamado
+    template_name = 'chamado_exibir.html'
+
+    def get_object(self, queryset=None):
+        chamado = get_object_or_404(Chamado, pk=self.kwargs['pk'])
+
+        # Atualiza o status do chamado
+        if chamado.status == 'Em andamento':  # Verifica se o chamado ainda está em andamento
+            chamado.status = 'Finalizado'  # Define como finalizado
+            chamado.save()
+            '''
+            # Envia um e-mail de notificação
+            self.enviar_email(chamado)
+            messages.success(self.request, "Chamado finalizado com sucesso!")
+        else:
+            messages.info(self.request, "Este chamado já foi finalizado.")
+'''
+        return chamado
+'''
+    def enviar_email(self, chamado):
+        # Configura o destinatário e os dados do e-mail
+        email = [chamado.cliente.email]  # Assumindo que o chamado tem um campo cliente com e-mail
+        dados = {
+            'cliente': chamado.cliente.nome,
+            'descricao': chamado.descricao,
+            'status': chamado.get_status_display(),  # Exibe a descrição do status
+            'data_abertura': chamado.data_abertura,
+            'data_fechamento': chamado.data_fechamento or 'Não definida',
+        }
+
+        # Gera o texto e o HTML do e-mail
+        texto_email = render_to_string('emails/chamado_finalizado.txt', dados)
+        html_email = render_to_string('emails/chamado_finalizado.html', dados)
+
+        # Envia o e-mail
+        send_mail(
+            subject='Chamado Finalizado',
+            message=texto_email,
+            from_email='seuemail@example.com',
+            recipient_list=email,
+            html_message=html_email,
+            fail_silently=False,
+        )
+
+    def post(self, request, *args, **kwargs):
+        '''

@@ -1,0 +1,25 @@
+{% extends 'principal.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="card shadow m-3 col-md-6 mx-auto">
+    <div class="card-body">
+        <div class="row">
+            <h3 class="text-center">Detalhes do Chamado</h3>
+
+            <p class="p-2 mt-2"><strong>Produto: </strong>{{ chamado.produto }}</p>
+            <p class="p-2 mt-2"><strong>Unidade: </strong>{{ chamado.unidade }}</p>
+            <p class="p-2 mt-2"><strong>Prioridade: </strong>{{ chamado.get_prioridade_display }}</p>
+            <p class="p-2 mt-2"><strong>Funcionário responsável: </strong>{{ chamado.funcionario }}</p>
+            <p class="p-2 mt-2"><strong>Vítima: </strong>{{ chamado.vitima }}</p>
+            <p class="p-2 mt-2"><strong>Status: </strong>FINALIZADO</p>
+            <p class="p-2 mt-2"><strong>Descrição: </strong>{{ chamado.descricao }}</p>
+
+            <div class="text-end">
+                <a href="{% url 'chamado' %}" class="btn btn-primary text-white" type="button">
+                    <span class="text">Retornar a Lista de Chamados</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

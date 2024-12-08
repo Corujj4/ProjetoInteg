@@ -10,8 +10,8 @@ class RemedioModelForm(ModelForm):
 
         error_messages = {
             'nome' : {'required' : 'O nome do mantimento é um campo obrigatorio'},
-            'quantidade' : {'required' : 'A quantidade do mantimento é um campo obrigatoria'},
-            'descricao' : {'required' : 'A descricao do mantimento é obrigatoria'},
+            'quantidade' : {'required' : 'A quantidade do remedio é um campo obrigatoria'},
+            'descricao' : {'required' : 'A descricao do remedio é obrigatoria'},
 
 
             'validade' : {'required' : 'A validade do remedio é obrigatoria'},
@@ -29,9 +29,9 @@ class RoupaModelForm(ModelForm):
         fields = '__all__'
 
         error_messages = {
-            'nome' : {'required' : 'O nome do mantimento é um campo obrigatorio'},
-            'quantidade' : {'required' : 'A quantidade do mantimento é um campo obrigatoria'},
-            'descricao' : {'required' : 'A descricao do mantimento é obrigatoria'},
+            'nome' : {'required' : 'O nome da roupa é um campo obrigatorio'},
+            'quantidade' : {'required' : 'A quantidade de roupas é um campo obrigatorio'},
+            'descricao' : {'required' : 'A descricao da roupa é obrigatoria'},
 
 
             'genero' : {'required' : 'O tamanho da roupa é obrigatorio'},

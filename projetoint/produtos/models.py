@@ -7,12 +7,13 @@ class Produtos(models.Model):
         ('REMEDIO', 'REMEDIO'),
         ('ROUPA', 'ROUPA'),
     )
-    nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', )
+
+    tipo_de_produto = models.CharField('Tipo', max_length=10, help_text='Tipo de produto',
+                                       choices=PRODUTOS_OPCOES)
+    nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', unique=True  )
     quantidade = models.DecimalField('quantidade',max_digits=5, decimal_places=2, help_text='quantidade do produtos em estoque')
     descricao = models.TextField('Descrição', max_length=300, help_text='Descricao e observações do produto')
 
-    tipo_de_produto = models.CharField('Tipo', max_length=10, help_text='Tipo de produto',
-                                  choices=PRODUTOS_OPCOES)
 
     class Meta:
         verbose_name = 'Produto'
@@ -23,6 +24,7 @@ class Produtos(models.Model):
 
 
 class Remedio(Produtos):
+
     validade = models.CharField('Validade',max_length=100,help_text='Validade do remedio.')
 
 
@@ -34,6 +36,7 @@ class Remedio(Produtos):
         return super().nome
 
 class Roupa(Produtos):
+
     genero = models.CharField('Genero',max_length=100,help_text='masculino ou feminino.')
     tamanho = models.CharField('Tamanho',max_length=100,help_text='tamanho da peça.')
 
@@ -47,8 +50,10 @@ class Roupa(Produtos):
 
 
 class Mantimento(Produtos):
+
     validade = models.CharField('Validade', max_length=100, help_text='Validade do mantimento.')
     categoria = models.CharField('Categoria', max_length=100, help_text='Categoria do mantimento  (liquido ou solido ).')
+
 
     class Meta:
         verbose_name = 'mantimento'
