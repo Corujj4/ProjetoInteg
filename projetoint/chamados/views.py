@@ -50,46 +50,6 @@ class ChamadoUpdateView(SuccessMessageMixin,UpdateView):
     success_message = 'Chamado editado com sucesso!'
 
 
-''' 
-class AgendamentoInlineEditView(TemplateResponseMixin,View):
-   template_name = 'agendamento_form_inline.html'
-
-   def get_formset(self, data=None):
-       return AgendamentoServicoInline(instance=self.agendamento, data=data)
-
-   def dispatch(self, request, pk):
-       self.agendamento = get_object_or_404(Agendamento, id=pk)
-       return super().dispatch(request, pk)
-
-   def get(self, request, *args, **kwargs):
-       formset = self.get_formset()
-       return self.render_to_response({'Agendamento':self.agendamento, 'formset':formset})
-
-   def post(self, request, *args, **kwargs):
-       formset = self.get_formset(data=request.POST)
-       if formset.is_valid():
-           dados = formset.cleaned_data
-           for item in dados:
-               if item.get('Situacao') != 'C':
-                   produtosservico = ProdutosServico.objects.filter(servico=item.get('servico'))
-                   if produtosservico:
-                       for prd in produtosservico:
-                           produto = Produto.objects.get(pk=prd.produto.pk)
-                           if produto.quantidade < prd.quantidade and not item.get('DELETE'):
-                               messages.error(request,
-                                              f'Atencao, Quantido em estoque insuficiente para o produto {produto.nome}')
-                               return self.render_to_response({'agendamento':self.agendamento, 'formset':formset})
-                           else:
-                               formset.save()
-                   else:
-                       formset.save()
-           return redirect('agendamentos')
-       else:
-           return self.render_to_response({'Agendamento':self.agendamento, 'formset':formset})
-
-'''
-
-
 class ChamadoExibir(DetailView):
     model = Chamado
     template_name = 'chamado_exibir.html'
