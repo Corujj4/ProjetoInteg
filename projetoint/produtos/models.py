@@ -25,6 +25,7 @@ class Produtos(models.Model):
 class Remedio(Produtos):
 
     validade = models.CharField('Validade',max_length=100,help_text='Validade do remedio.')
+    gramatura =models.IntegerField('Gramatura',max_length=5,help_text='Gramas do remedio')
 
     def save(self, *args, **kwargs):
         self.tipo_de_produto = 'REMEDIO'

@@ -6,7 +6,7 @@ from .models import Remedio, Roupa, Mantimento
 class RemedioModelForm(ModelForm):
     class Meta:
         model = Remedio
-        fields = ['nome', 'quantidade', 'descricao', 'validade']
+        fields = ['nome', 'quantidade', 'descricao', 'validade','gramatura']
 
         error_messages = {
             'nome' : {'required' : 'O nome do mantimento é um campo obrigatorio'},
@@ -15,11 +15,7 @@ class RemedioModelForm(ModelForm):
 
 
             'validade' : {'required' : 'A validade do remedio é obrigatoria'},
-
-
-
-
-
+            'gramatura': {'required': 'A gramatura do remedio é obrigatoria'},
 
 
         }
@@ -37,9 +33,6 @@ class RoupaModelForm(ModelForm):
 
             'genero' : {'required' : 'O tamanho da roupa é obrigatorio'},
             'tamanho' : {'required' : 'O genero da roupa é obrigatorio'},
-
-
-
 
 
         }
