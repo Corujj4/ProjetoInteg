@@ -20,7 +20,7 @@ class ProdutoView(ListView):
             qs = qs.filter(nome__icontains=buscar)
 
         if qs.count() > 0:
-            paginator = Paginator(qs, 10)
+            paginator = Paginator(qs, 15)
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
 

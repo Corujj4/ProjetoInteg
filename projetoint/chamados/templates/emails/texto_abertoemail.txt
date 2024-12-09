@@ -1,0 +1,14 @@
+Olá!
+Estamos enviando este e-mail para comunicar que o chamado que você solicitou foi aberto.
+
+Dados do Chamado
+Funcionário responsavel pelo chamado: {{funcionario}}
+Vitima auxiliada: {{vitima}}
+
+Produtos :
+Item: {{produto}}
+Quantidade: {{quantidade}}
+
+Atenciosamente
+
+<Ajudantos

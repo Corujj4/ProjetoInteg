@@ -40,7 +40,7 @@
                                         <td> {{ chamado.vitima }}</td>
                                         <td style="text-align: center">
                                             
-                                            {% if chamado.status == 'Em andamento' %}
+                                            
                                             <a href="{% url 'chamado_editar' chamado.pk %}">
                                                 <span class="icon">
                                                     <i class="bi bi-clipboard2"></i>
@@ -57,7 +57,7 @@
                                                 </span>
                                             </a>
                                             
-                                            {% else %}
+                                            
                                             
                                                 <span class="icon">
                                                     <i class="bi bi-clipboard2"></i>
@@ -70,7 +70,7 @@
                                                 <span class="icon">
                                                     <i class="bi bi-check-circle-fill"></i>
                                                 </span>
-                                             {% endif %}
+                                             
                                             
                                         </td>
                                         <div class="modal" tabindex="-1" id="modal{{chamado.id}}">
