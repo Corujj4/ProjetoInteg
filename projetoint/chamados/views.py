@@ -1,3 +1,5 @@
+from django.shortcuts import reverse
+
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
@@ -7,8 +9,11 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib import messages
 from django.views.generic.base import TemplateResponseMixin, View
+
+import produtos.views
 from chamados.forms import ChamadoModelForm
 from chamados.models import Chamado
+from produtos.views import RoupaDeleteView
 
 
 class ChamadoView(ListView):
@@ -87,19 +92,6 @@ class ChamadoExibir(DetailView):
     model = Chamado
     template_name = 'chamado_exibir.html'
 
-    def get_object(self, queryset=None):
-        chamado = get_object_or_404(Chamado, pk=self.kwargs['pk'])
-
-        if chamado.status == 'Em andamento':
-            chamado.status = 'Finalizado'
-            chamado.save()
-
-            self.enviar_email(chamado)
-            messages.success(self.request, "Chamado finalizado com sucesso!")
-        else:
-            messages.info(self.request, "Este chamado já foi finalizado.")
-
-        return chamado
 
     def enviar_email(self, chamado):
 
@@ -130,3 +122,26 @@ class ChamadoExibir(DetailView):
 
         return redirect('chamado')
 
+    def get_object(self, queryset=None):
+        chamado = get_object_or_404(Chamado, pk=self.kwargs['pk'])
+
+        if chamado.status == 'Em andamento':
+            try:
+                # Verifica se o produto relacionado ao chamado ainda existe
+                produto = chamado.produto
+                return chamado
+            except chamado.produto.__class__.DoesNotExist:
+                # Produto não existe, exibe mensagem e mantém o chamado aberto
+                messages.error(self.request, "O produto relacionado a este chamado está indisponível no estoque.")
+                return chamado
+
+            # Caso o produto exista, conclui o chamado
+            chamado.status = 'Finalizado'
+            chamado.save()
+
+            self.enviar_email(chamado)
+            messages.success(self.request, "Chamado finalizado com sucesso!")
+        else:
+            messages.info(self.request, "Este chamado já foi finalizado.")
+
+        return chamado

@@ -10,7 +10,7 @@ class Chamado(models.Model):
 
 
     unidade = models.DecimalField('unidade',max_digits=5, decimal_places=2, help_text='unidade de items do chamado')
-    produto = models.ForeignKey('produtos.Produtos',verbose_name='Produto',help_text='Produto a ser solicitado', on_delete=models.PROTECT)
+    produto = models.ForeignKey('produtos.Produtos',verbose_name='Produto',help_text='Produto a ser solicitado', on_delete=models.SET_NULL,null=True,blank=True)
     prioridade = models.CharField('prioridade',max_length=1, help_text='Prioridade do chamado', choices=PRIORIDADE_OPCOES)
     funcionario = models.ForeignKey('funcionario.Funcionario', verbose_name='Funcionario', help_text='Nome do funcionario',on_delete=models.PROTECT )
     vitima = models.ForeignKey('vitima.Vitima', verbose_name='Vitima',help_text='Nome da vitima', on_delete=models.PROTECT )
@@ -25,5 +25,3 @@ class Chamado(models.Model):
         verbose_name_plural = 'Chamados'
 
 
-    def __str__(self):
-        return self.unidade

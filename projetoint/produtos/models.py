@@ -18,6 +18,9 @@ class Produtos(models.Model):
     def __str__(self):
         return self.nome
 
+    def deletar(self):
+        self.delete()
+
 
 class Remedio(Produtos):
 
