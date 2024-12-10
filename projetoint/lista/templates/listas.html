@@ -38,7 +38,7 @@
                                                 </span>
                                             </a>
                                         </td>
-                                        <td>{{ lista.produto }}</td>
+                                        <td>{{ lista.produto. }}</td>
                                       <td>
                                             {% if lista.produto.all %}
                                                 {% with 0 as contador %}
@@ -69,25 +69,37 @@
                                                 </span>
                                             </a>
                                             <!-- Modal -->
-                                            <div class="modal" tabindex="-1" id="modal{{ lista.id }}">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Produtos: {{ lista.nome }}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                    aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <!-- Listar produtos detalhadamente, se necessário -->
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                                Fechar
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div class="modal" tabindex="-1" id="modal{{lista.id}}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">produtos: {{produtos.nome}}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body d flex justify-content-center">
+                                                                     <div>
+
+                                                                             {% if lista.listaprodutos.produto.roupa  %}
+                                                                        <h6><strong>Tamanho: </strong>{{ produtos.roupa.tamanho }}</h6>
+                                                                        <h6><strong>Gênero: </strong>{{ produtos.roupa.genero }}</h6>
+
+
+                                                                        {% elif listaprodutos.produto.mantimento %}
+
+                                                                        <h6><strong>Validade: </strong>{{ produtos.mantimento.validade }}</h6>
+                                                                        <h6><strong>Categoria: </strong>{{ produtos.mantimento.categoria }}</h6>
+                                                                        <h6><strong>Quantidade: </strong>{{ produtos.mantimento.quantidade }}</h6>
+
+                                                                        {% elif listaproduto.remeddio %}
+                                                                        <h6><strong>Validade: </strong>{{ produtos.remedio.validade }}</h6>
+                                                                         <h6><strong>Quantidade: </strong>{{ produtos.remedio.quantidade }}</h6>
+                                                                         <h6><strong>Gramas: </strong>{{ produtos.remedio.gramatura }}</h6>
+
+                                                                        {% endif %}
+
+
+                                                                    </div>
                                         </td>
                                     </tr>
                                 {% endfor %}
