@@ -7,6 +7,7 @@ class ListaProdutos(models.Model):
     produto = models.ForeignKey('produtos.Produtos',verbose_name='produto',help_text='nome da produto', related_name='produtos', on_delete=models.CASCADE)
     quantidade = models.IntegerField(verbose_name='quantidade', default=0)
 
+
     class Meta:
         verbose_name = 'lista de produtos'
         verbose_name_plural = 'listas de produtos'

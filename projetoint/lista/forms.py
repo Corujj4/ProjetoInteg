@@ -14,4 +14,4 @@ class ListaModelForm(ModelForm):
 
 
         }
-ListaProdutosInline = inlineformset_factory(Lista, ListaProdutos,fk_name='lista',fields=('produto','quantidade'),extra=1,can_delete=True )
+ListaProdutosInline = inlineformset_factory(Lista, ListaProdutos,fk_name='lista',fields=('produto',),extra=1,can_delete=True )

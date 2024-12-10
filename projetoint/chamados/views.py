@@ -46,7 +46,7 @@ class ChamadoAddView(SuccessMessageMixin,CreateView):
 
     def form_valid(self, form):
         chamado = form.save()
-        '''self.enviar_emailinicio(chamado)'''
+        self.enviar_emailinicio(chamado)
         return super().form_valid(form)
 
     def enviar_emailinicio(self, chamado):
@@ -131,7 +131,9 @@ class ChamadoExibir(DetailView):
                 produto = chamado.produto
                 chamado.status = 'Finalizado'
                 chamado.save()
+                self.enviar_email(chamado)
                 produto.delete()
+
                 return chamado
             except chamado.produto.__class__.DoesNotExist:
                 # Produto não existe, exibe mensagem e mantém o chamado aberto
@@ -141,7 +143,7 @@ class ChamadoExibir(DetailView):
             # Caso o produto exista, conclui o chamado
 
 
-            self.enviar_email(chamado)
+
             messages.success(self.request, "Chamado finalizado com sucesso!")
         else:
             messages.info(self.request, "Este chamado já foi finalizado.")

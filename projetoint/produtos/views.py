@@ -32,7 +32,7 @@ class RemedioAddView(SuccessMessageMixin,CreateView):
     model = Remedio
     form_class = RemedioModelForm
     template_name = 'remedio_form.html'
-    success_url = reverse_lazy('produtos')
+    success_url = reverse_lazy('listas')
     success_message = 'Remedio cadastrado com sucesso!'
 
 class RemedioUpdateView(SuccessMessageMixin,UpdateView):
@@ -53,7 +53,7 @@ class RoupaAddView(SuccessMessageMixin,CreateView):
     model = Roupa
     form_class = RoupaModelForm
     template_name = 'roupa_form.html'
-    success_url = reverse_lazy('produtos')
+    success_url = reverse_lazy('listas')
     success_message = 'Roupa cadastrada com sucesso!'
 
 class RoupaUpdateView(SuccessMessageMixin,UpdateView):
@@ -74,7 +74,7 @@ class MantimentoAddView(SuccessMessageMixin,CreateView):
     model = Mantimento
     form_class = MantimentoModelForm
     template_name = 'mantimentos_form.html'
-    success_url = reverse_lazy('produtos')
+    success_url = reverse_lazy('listas')
     success_message = 'Mantimento cadastrado com sucesso!'
 
 class MantimentoUpdateView(SuccessMessageMixin,UpdateView):
