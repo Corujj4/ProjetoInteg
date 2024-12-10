@@ -38,20 +38,19 @@
                                                 </span>
                                             </a>
                                         </td>
-                                        <td>{{ lista.produto. }}</td>
+                                        <td>{{ lista.nome }}</td>
+
                                       <td>
-                                            {% if lista.produto.all %}
-                                                {% with 0 as contador %}
-                                                {% for produto in lista.produto.all %}
-                                                    {% with contador|add:1 as contador %}
-                                                    {% endwith %}
-                                                {% endfor %}
-                                                {{ contador }} produto{{ contador|pluralize }}
-                                                {% endwith %}
+                                                {% for produto in lista.produtos %}
+                                            {% if forloop.last %}
+                                                {{ produto }}
                                             {% else %}
-                                                Nenhum produto cadastrado
+                                                {{ produto }},
                                             {% endif %}
+                                        {% endfor %}
                                         </td>
+
+
                                         <td style="text-align: center">
                                             <a href="{% url 'lista_inline' lista.pk %}">
                                                 <span class="icon">
@@ -68,39 +67,49 @@
                                                     <i class="bi bi-trash3"></i>
                                                 </span>
                                             </a>
+
                                             <!-- Modal -->
-                                            <div class="modal" tabindex="-1" id="modal{{lista.id}}">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">produtos: {{produtos.nome}}</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body d flex justify-content-center">
-                                                                     <div>
+                                    <div class="modal" tabindex="-1" id="modal{{ lista.id }}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Produtos na Lista: {{ lista.nome }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {% if lista.produto.all %}
+                                                        {% for produto in lista.produto.all %}
+                                                            <div class="mb-3">
+                                                                <h6><strong>Nome:</strong> {{ produto.nome }}</h6>
+                                                                <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
 
-                                                                             {% if lista.listaprodutos.produto.roupa  %}
-                                                                        <h6><strong>Tamanho: </strong>{{ produtos.roupa.tamanho }}</h6>
-                                                                        <h6><strong>Gênero: </strong>{{ produtos.roupa.genero }}</h6>
+                                                                {% if produto.tipo_de_produto == "ROUPA" %}
+                                                                    <p><strong>Tamanho:</strong> {{ produto.roupa.tamanho }}</p>
+                                                                    <p><strong>Gênero:</strong> {{ produto.roupa.genero }}</p>
+                                                                    <p><strong>Quantidade:</strong> {{ produto.roupa.quantidade }}</p>
+                                                                {% elif produto.tipo_de_produto == "MANTIMENTO" %}
+                                                                    <p><strong>Validade:</strong> {{ produto.mantimento.validade }}</p>
+                                                                    <p><strong>Categoria:</strong> {{ produto.mantimento.categoria }}</p>
+                                                                    <p><strong>Quantidade:</strong> {{ produto.mantimento.quantidade }}</p>
+                                                                {% elif produto.tipo_de_produto == "REMEDIO" %}
+                                                                    <p><strong>Validade:</strong> {{ produto.remedio.validade }}</p>
+                                                                    <p><strong>Gramatura:</strong> {{ produto.remedio.gramatura }}</p>
+                                                                    <p><strong>Quantidade:</strong> {{ produto.remedio.quantidade }}</p>
+                                                                {% endif %}
+                                                            </div>
+                                                            <hr>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <p>Nenhum produto cadastrado nesta lista.</p>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-
-                                                                        {% elif listaprodutos.produto.mantimento %}
-
-                                                                        <h6><strong>Validade: </strong>{{ produtos.mantimento.validade }}</h6>
-                                                                        <h6><strong>Categoria: </strong>{{ produtos.mantimento.categoria }}</h6>
-                                                                        <h6><strong>Quantidade: </strong>{{ produtos.mantimento.quantidade }}</h6>
-
-                                                                        {% elif listaproduto.remeddio %}
-                                                                        <h6><strong>Validade: </strong>{{ produtos.remedio.validade }}</h6>
-                                                                         <h6><strong>Quantidade: </strong>{{ produtos.remedio.quantidade }}</h6>
-                                                                         <h6><strong>Gramas: </strong>{{ produtos.remedio.gramatura }}</h6>
-
-                                                                        {% endif %}
-
-
-                                                                    </div>
-                                        </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
