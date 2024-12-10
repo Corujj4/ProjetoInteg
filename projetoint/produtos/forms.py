@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from django.forms import ModelForm
 
+from django import forms
 from .models import Remedio, Roupa, Mantimento
 
 
@@ -31,8 +34,8 @@ class RoupaModelForm(ModelForm):
             'descricao' : {'required' : 'A descricao da roupa é obrigatoria'},
 
 
-            'genero' : {'required' : 'O tamanho da roupa é obrigatorio'},
-            'tamanho' : {'required' : 'O genero da roupa é obrigatorio'},
+            'genero' : {'required' : 'O genero da roupa é obrigatorio'},
+            'tamanho' : {'required' : 'O tamanho da roupa é obrigatorio'},
 
 
         }

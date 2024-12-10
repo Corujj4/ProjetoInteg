@@ -1,15 +1,12 @@
-from logging import disable
-
 from django.db import models
 
-
 class Produtos(models.Model):
-
-
-    nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', unique=True  )
-    quantidade = models.IntegerField('quantidade', help_text='quantidade do produtos em estoque')
-    descricao = models.TextField('Descrição', max_length=300, help_text='Descricao e observações do produto')
+    nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', unique=True)
+    descricao = models.TextField('Descrição', max_length=300, help_text='Descrição e observações do produto')
     tipo_de_produto = models.CharField('Tipo', max_length=10, help_text='Tipo de produto', null=False, blank=True)
+
+    def deletar(self):
+        self.delete()
 
     class Meta:
         verbose_name = 'Produto'
@@ -18,59 +15,61 @@ class Produtos(models.Model):
     def __str__(self):
         return self.nome
 
-    def deletar(self):
-        self.delete()
-
 
 class Remedio(Produtos):
+    validade = models.CharField('Validade', max_length=100, help_text='Validade do remédio.')
+    gramatura = models.CharField('Gramatura', max_length=5, help_text='Gramas do remédio')
+    quantidade = models.IntegerField('Quantidade', help_text='Quantidade do produto em estoque', null=False, default=0)
 
-    validade = models.IntegerField('Validade',max_length=100,help_text='Validade do remedio.')
-    gramatura =models.IntegerField('Gramatura',max_length=5,help_text='Gramas do remedio')
+
 
     def save(self, *args, **kwargs):
         self.tipo_de_produto = 'REMEDIO'
         super().save(*args, **kwargs)
 
-
     class Meta:
-        verbose_name = 'remedio'
-        verbose_name_plural = 'remedios'
+        verbose_name = 'Remédio'
+        verbose_name_plural = 'Remédios'
         ordering = ['-validade']
 
     def __str__(self):
-        return super().nome
+        return super().__str__()  # Correção aqui
+
 
 class Roupa(Produtos):
+    genero = models.CharField('Gênero', max_length=100, help_text='Masculino ou feminino.')
+    tamanho = models.CharField('Tamanho', max_length=100, help_text='Tamanho da peça.')
+    quantidade = models.IntegerField('Quantidade', help_text='Quantidade do produto em estoque', null=False, default=0)
 
-    genero = models.CharField('Genero',max_length=100,help_text='masculino ou feminino.')
-    tamanho = models.CharField('Tamanho',max_length=100,help_text='tamanho da peça.')
+
 
     def save(self, *args, **kwargs):
         self.tipo_de_produto = 'ROUPA'
         super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name = 'roupa'
-        verbose_name_plural = 'roupas'
+        verbose_name = 'Roupa'
+        verbose_name_plural = 'Roupas'
 
     def __str__(self):
-        return super().nome
+        return super().__str__()  # Correção aqui
 
 
 class Mantimento(Produtos):
+    validade = models.CharField('Validade', max_length=100, help_text='Validade do mantimento.')
+    categoria = models.CharField('Categoria', max_length=100, help_text='Categoria do mantimento (líquido ou sólido).')
+    quantidade = models.IntegerField('Quantidade', help_text='Quantidade do produto em estoque', null=False, default=0)
 
-    validade = models.IntegerField('Validade', max_length=100, help_text='Validade do mantimento.')
-    categoria = models.CharField('Categoria', max_length=100, help_text='Categoria do mantimento  (liquido ou solido ).')
+
 
     def save(self, *args, **kwargs):
         self.tipo_de_produto = 'MANTIMENTO'
         super().save(*args, **kwargs)
 
-
     class Meta:
-        verbose_name = 'mantimento'
-        verbose_name_plural = 'mantimentos'
+        verbose_name = 'Mantimento'
+        verbose_name_plural = 'Mantimentos'
         ordering = ['validade']
 
     def __str__(self):
-        return super().nome
+        return super().__str__()  # Correção aqui

@@ -2,6 +2,7 @@ from .views import RemedioDeleteView, RemedioUpdateView, RemedioAddView, RoupaUp
     MantimentoAddView, MantimentoUpdateView, MantimentoDeleteView, ProdutoView
 from django.urls import path
 
+
 urlpatterns = [
 
     path('produtos', ProdutoView.as_view(), name='produtos'),
@@ -17,6 +18,7 @@ urlpatterns = [
     path('mantimento/adicionar/',MantimentoAddView.as_view(),name='mantimento_adicionar'),
     path('<int:pk>/mantimento/editar/',MantimentoUpdateView.as_view(),name='mantimento_editar'),
     path('<int:pk>/mantimento/apagar/',MantimentoDeleteView.as_view(), name='mantimento_apagar'),
+
 
 ]
 

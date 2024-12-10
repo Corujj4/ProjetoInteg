@@ -88,3 +88,8 @@ class MantimentoDeleteView(SuccessMessageMixin,DeleteView):
     template_name = 'mantimento_apagar.html'
     success_url = reverse_lazy('produtos')
     success_message = 'mantimento cadastrado com sucesso!'
+
+
+
+
+
