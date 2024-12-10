@@ -46,10 +46,20 @@
 						Estoque
 					  </a>
 					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-						<li><a class="dropdown-item" href="{% url 'produtos' %}">Visualizar Estoque</a></li>
+						<li><a class="dropdown-item" href="{% url 'listas' %}">Visualizar Lista de Itens</a></li>
+                          <li><a class="dropdown-item" href="{% url 'produtos' %}">Visualizar Estoque Completo</a></li>
+					  </ul>
+
+					</li>
+                        <li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Cadastros
+					  </a>
+					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
 						<li><a class="dropdown-item" href="{% url 'remedio_adicionar' %}">Cadastrar Remedio</a></li>
                         <li><a class="dropdown-item" href="{% url 'mantimento_adicionar' %}">Cadastrar Mantimento</a></li>
                         <li><a class="dropdown-item" href="{% url 'roupa_adicionar' %}">Cadastrar Roupa</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lista_adicionar' %}">Cadastrar Lista de Produto</a></li>
 					  </ul>
 
 					</li>

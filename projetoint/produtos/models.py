@@ -1,7 +1,8 @@
 from django.db import models
 
+
 class Produtos(models.Model):
-    nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', unique=True)
+    nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto')
     descricao = models.TextField('Descrição', max_length=300, help_text='Descrição e observações do produto')
     tipo_de_produto = models.CharField('Tipo', max_length=10, help_text='Tipo de produto', null=False, blank=True)
 

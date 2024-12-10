@@ -1,0 +1,101 @@
+{% extends 'principal.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <form action="" method="GET">
+            <div class="form-group row p-3">
+                <label class="col-sm-2 col-form-label">Nome da Lista de produtos: </label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" name="buscar" value="{{ request.GET.buscar }}"
+                           placeholder="Digite o nome do produto">
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+        </form>
+        {% if object_list %}
+            <div class="card-body d-flex justify-content-center">
+                <div class="card-body" style="border: 4px solid rgba(0,0,0,0.33); padding: 20px;">
+                    <h3 class="text-center">Lista de produtos Cadastrados</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table table-dark">
+                                <th>Itens</th>
+                                <th>Nome</th>
+                                <th>Produtos</th>
+                                <th style="width: 100px; text-align: center">Ações</th>
+                            </thead>
+                            <tbody>
+                                {% for lista in object_list %}
+                                    <tr>
+                                        <td>
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ lista.id }}">
+                                                <span class="icon">
+                                                    <i class="bi bi-collection-fill"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                        <td>{{ lista.nome }}</td>
+                                        <td>
+                                            {% for produto in lista.produto_set.all %}
+                                                {{ lista.nome }} (Quantidade: {{ produto.quantidade }}){% if not forloop.last %}, {% endif %}
+                                            {% empty %}
+                                                Nenhum produto cadastrado.
+                                            {% endfor %}
+                                        </td>
+                                        <td style="text-align: center">
+                                            <a href="{% url 'lista_inline' lista.pk %}">
+                                                <span class="icon">
+                                                    <i class="bi bi-cart-plus-fill"></i>
+                                                </span>
+                                            </a>
+                                            <a href="{% url 'lista_editar' lista.pk %}">
+                                                <span class="icon">
+                                                    <i class="bi bi-clipboard2"></i>
+                                                </span>
+                                            </a>
+                                            <a href="{% url 'lista_apagar' lista.pk %}">
+                                                <span class="icon">
+                                                    <i class="bi bi-trash3"></i>
+                                                </span>
+                                            </a>
+                                            <!-- Modal -->
+                                            <div class="modal" tabindex="-1" id="modal{{ lista.id }}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Produtos: {{ lista.nome }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Listar produtos detalhadamente, se necessário -->
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                                Fechar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                {% bootstrap_pagination object_list url="/listas?page=1" size="sm" %}
+            </div>
+        {% else %}
+            <h3 class="text-center">Nenhuma Lista Cadastrada</h3>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

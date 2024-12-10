@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('vitima.urls')),
     path('', include('produtos.urls')),
     path('', include('chamados.urls')),
+    path('', include('lista.urls')),
 
 
 

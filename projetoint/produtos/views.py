@@ -12,6 +12,7 @@ class ProdutoView(ListView):
     model = Produtos
     template_name = 'produtos.html'
 
+
     def get_queryset(self):
         buscar = self.request.GET.get('buscar')
         qs =  super(ProdutoView,self).get_queryset()
