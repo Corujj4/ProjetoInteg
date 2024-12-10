@@ -38,13 +38,19 @@
                                                 </span>
                                             </a>
                                         </td>
-                                        <td>{{ lista.nome }}</td>
-                                        <td>
-                                            {% for produto in lista.produto_set.all %}
-                                                {{ lista.nome }} (Quantidade: {{ produto.quantidade }}){% if not forloop.last %}, {% endif %}
-                                            {% empty %}
-                                                Nenhum produto cadastrado.
-                                            {% endfor %}
+                                        <td>{{ lista.produto }}</td>
+                                      <td>
+                                            {% if lista.produto.all %}
+                                                {% with 0 as contador %}
+                                                {% for produto in lista.produto.all %}
+                                                    {% with contador|add:1 as contador %}
+                                                    {% endwith %}
+                                                {% endfor %}
+                                                {{ contador }} produto{{ contador|pluralize }}
+                                                {% endwith %}
+                                            {% else %}
+                                                Nenhum produto cadastrado
+                                            {% endif %}
                                         </td>
                                         <td style="text-align: center">
                                             <a href="{% url 'lista_inline' lista.pk %}">
