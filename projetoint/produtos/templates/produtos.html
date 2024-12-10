@@ -97,6 +97,7 @@
                                                                         {% else %}
                                                                         <h6><strong>Validade: </strong>{{ produtos.remedio.validade }}</h6>
                                                                        <h6><strong>Quantidade: </strong>{{ produtos.remedio.quantidade }}</h6>
+                                                                        <h6><strong>Gramas: </strong>{{ produtos.remedio.gramatura }}</h6>
                                                                         {% endif %}
 
 
@@ -190,7 +191,8 @@
 
                                                                         {% else %}
                                                                         <h6><strong>Validade: </strong>{{ produtos.remedio.validade }}</h6>
-                                                                       <h6><strong>Quantidade: </strong>{{ produtos.remedio.quantidade }}</h6>
+                                                                         <h6><strong>Quantidade: </strong>{{ produtos.remedio.quantidade }}</h6>
+                                                                         <h6><strong>Gramas: </strong>{{ produtos.remedio.gramatura }}</h6>
                                                                         {% endif %}
 
 
@@ -234,11 +236,7 @@
                                                                 <td> {{ produtos.roupa.tamanho }}</td>
                                                                 <td> {{ produtos.roupa.genero }}</td>
                                                                 <td style="text-align: center">
-                                                                        <a href="#">
-                                                                            <span class="icon">
-                                                                                <i class="bi bi-cart-plus-fill"></i>
-                                                                            </span>
-                                                                        </a>
+
 
                                                                         <a href="{% url 'roupa_editar' produtos.pk %}">
                                                                             <span class="icon">
@@ -267,6 +265,9 @@
                  <div class="d-flex justify-content-center ">
                         {% bootstrap_pagination object_list url="/produtos?page=1" size="sm" %}
                     </div>
+
+                    {% else %}
+                <h3 class="text-center">Nenhum Produto Cadastrado</h3>
             {% endif %}
         </div>
     </section>

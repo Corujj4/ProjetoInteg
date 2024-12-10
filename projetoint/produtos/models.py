@@ -7,7 +7,7 @@ class Produtos(models.Model):
 
 
     nome = models.CharField('Nome', max_length=100, help_text='Nome completo do produto', unique=True  )
-    quantidade = models.DecimalField('quantidade',max_digits=5, decimal_places=2, help_text='quantidade do produtos em estoque')
+    quantidade = models.IntegerField('quantidade', help_text='quantidade do produtos em estoque')
     descricao = models.TextField('Descrição', max_length=300, help_text='Descricao e observações do produto')
     tipo_de_produto = models.CharField('Tipo', max_length=10, help_text='Tipo de produto', null=False, blank=True)
 
@@ -24,7 +24,7 @@ class Produtos(models.Model):
 
 class Remedio(Produtos):
 
-    validade = models.CharField('Validade',max_length=100,help_text='Validade do remedio.')
+    validade = models.IntegerField('Validade',max_length=100,help_text='Validade do remedio.')
     gramatura =models.IntegerField('Gramatura',max_length=5,help_text='Gramas do remedio')
 
     def save(self, *args, **kwargs):
@@ -35,6 +35,7 @@ class Remedio(Produtos):
     class Meta:
         verbose_name = 'remedio'
         verbose_name_plural = 'remedios'
+        ordering = ['-validade']
 
     def __str__(self):
         return super().nome
@@ -58,7 +59,7 @@ class Roupa(Produtos):
 
 class Mantimento(Produtos):
 
-    validade = models.CharField('Validade', max_length=100, help_text='Validade do mantimento.')
+    validade = models.IntegerField('Validade', max_length=100, help_text='Validade do mantimento.')
     categoria = models.CharField('Categoria', max_length=100, help_text='Categoria do mantimento  (liquido ou solido ).')
 
     def save(self, *args, **kwargs):
@@ -69,6 +70,7 @@ class Mantimento(Produtos):
     class Meta:
         verbose_name = 'mantimento'
         verbose_name_plural = 'mantimentos'
+        ordering = ['validade']
 
     def __str__(self):
         return super().nome

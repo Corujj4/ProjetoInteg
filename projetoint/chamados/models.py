@@ -23,5 +23,6 @@ class Chamado(models.Model):
     class Meta:
         verbose_name = 'Chamado'
         verbose_name_plural = 'Chamados'
+        ordering = ['-prioridade']
 
 
