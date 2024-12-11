@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'TrabalhoIntegrador.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'projetoint',
+        'USER': 'postgres',
+        'PASSWORD': '271002',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
