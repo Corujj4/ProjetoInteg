@@ -4,7 +4,7 @@ from django.db import models
 class ListaProdutos(models.Model):
 
     lista = models.ForeignKey('lista.Lista',verbose_name='lista',help_text='nome da lista', related_name='lista', on_delete=models.CASCADE)
-    produto = models.ForeignKey('produtos.Produtos',verbose_name='produto',help_text='nome da produto', related_name='produtos', on_delete=models.CASCADE)
+    produto = models.ForeignKey('produtos.Produtos',verbose_name='Informacoes',help_text='informacoes do produto', related_name='produtos', on_delete=models.CASCADE)
     quantidade = models.IntegerField(verbose_name='quantidade', default=0)
 
 

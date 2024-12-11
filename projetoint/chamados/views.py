@@ -104,7 +104,7 @@ class ChamadoExibir(PermissionRequiredMixin,DetailView):
         email =[]
         email.append(chamado.funcionario.email)
         email.append(chamado.vitima.email)
-        dados = {-
+        dados = {
             'funcionario': chamado.funcionario.nome,
             'vitima': chamado.vitima.nome,
             'produto':chamado.produto.nome,

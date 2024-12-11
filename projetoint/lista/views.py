@@ -59,6 +59,8 @@ class ListaDeleteView(PermissionRequiredMixin,SuccessMessageMixin,DeleteView):
     success_message = 'Lista cadastrada com sucesso!'
 
 class ListaInlineEditView(PermissionRequiredMixin,TemplateResponseMixin,View):
+    permission_required = 'lista.view_lista'
+    permission_denied_message = 'Visualizar Lista'
     template_name = 'lista_form_inline.html'
 
     def get_formset(self, data=None):

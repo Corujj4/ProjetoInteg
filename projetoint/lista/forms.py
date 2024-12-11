@@ -10,7 +10,7 @@ class ListaModelForm(ModelForm):
         fields = ['nome']
 
         error_messages = {
-            'nome' : {'required' : 'O nome do mantimento é um campo obrigatorio'},
+            'nome' : {'required' : 'O nome da lista é um campo obrigatorio'},
 
 
         }

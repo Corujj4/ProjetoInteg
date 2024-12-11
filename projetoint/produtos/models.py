@@ -14,7 +14,7 @@ class Produtos(models.Model):
         verbose_name_plural = 'Produtos'
 
     def __str__(self):
-        return self.nome
+        return f'{self.nome} {self.descricao} '
 
 
 class Remedio(Produtos):
@@ -34,7 +34,7 @@ class Remedio(Produtos):
         ordering = ['-validade']
 
     def __str__(self):
-        return super().__str__()  # Correção aqui
+        return super().__str__()
 
 
 class Roupa(Produtos):
@@ -53,7 +53,7 @@ class Roupa(Produtos):
         verbose_name_plural = 'Roupas'
 
     def __str__(self):
-        return super().__str__()  # Correção aqui
+        return super().__str__()
 
 
 class Mantimento(Produtos):
@@ -73,4 +73,4 @@ class Mantimento(Produtos):
         ordering = ['validade']
 
     def __str__(self):
-        return super().__str__()  # Correção aqui
+        return super().__str__()
