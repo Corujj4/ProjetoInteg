@@ -32,7 +32,7 @@ class ProdutoView(PermissionRequiredMixin,ListView):
             return messages.info(self.request,'Nao existem clientes cadastrados.')
 
 class RemedioAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
-    permission_required = 'remedio.add.remedio'
+    permission_required = 'remedio.add_remedio'
     permission_denied_message = 'Adicionar remedio'
     model = Remedio
     form_class = RemedioModelForm
@@ -41,7 +41,7 @@ class RemedioAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
     success_message = 'Remedio cadastrado com sucesso!'
 
 class RemedioUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
-    permission_required = 'remedio.update.remedio'
+    permission_required = 'remedio.update_remedio'
     permission_denied_message = 'Editar remedio'
     model = Remedio
     form_class = RemedioModelForm
@@ -50,7 +50,7 @@ class RemedioUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
     success_message = 'Remedio alterado com sucesso!'
 
 class RemedioDeleteView(PermissionRequiredMixin,SuccessMessageMixin,DeleteView):
-    permission_required = 'remedio.delete.remedio'
+    permission_required = 'remedio.delete_remedio'
     permission_denied_message = 'Deletar remedio'
     model = Remedio
     template_name = 'remedio_apagar.html'
