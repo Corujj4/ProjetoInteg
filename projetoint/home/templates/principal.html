@@ -11,6 +11,7 @@
 				<a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
 				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
 				  <ul class="navbar-nav">
+                      {% if request.user.is_authenticated %}
 						<li class="nav-item dropdown">
 					  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Chamados
@@ -41,6 +42,7 @@
 					  </ul>
 
 					</li>
+
 						<li class="nav-item dropdown">
 					  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Estoque
@@ -48,11 +50,39 @@
 					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
 						<li><a class="dropdown-item" href="{% url 'listas' %}">Gerenciamento de Itens
                         </a></li>
+                      </ul>
 
-					  </ul>
 
+
+
+                            <li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarLogin" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Usuario : {{ request.user.username }}
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="{% url 'alterar_senha' %}"> Alterar senha</a></li>
+										<li>
+											<form action="{% url 'logout' %}" method="POST">
+												{% csrf_token %}
+												<button class="btn btn-link dropdown-item" type="sumbmit">Log Out</button>
+											</form>
+										</li>
+									</ul>
+								</li>
+							{% else %}
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarAcesso" role="button"
+									   data-bs-toggle="dropdown" aria-expanded="false">
+										Acesso
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+									</ul>
+								</li>
+							{% endif %}
 				  </ul>
-				</div>
+          </div>
 	  </div>
 </nav>
 

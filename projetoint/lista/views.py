@@ -1,16 +1,19 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateResponseMixin, View
 from lista.forms import ListaModelForm, ListaProdutosInline
 from lista.models import Lista
 from django.contrib import messages
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 # Create your views here.
-class ListaView(ListView):
+class ListaView(PermissionRequiredMixin,ListView):
+    permission_required = 'lista.view_lista'
+    permission_denied_message = 'Visualizar Lista'
     model = Lista
     template_name = 'listas.html'
 
@@ -29,27 +32,33 @@ class ListaView(ListView):
         else:
             return messages.info(self.request,'Nao existem Lista cadastradas.')
 
-class ListaAddView(SuccessMessageMixin,CreateView):
+class ListaAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
+    permission_required = 'lista.view_lista'
+    permission_denied_message = 'Visualizar Lista'
     model = Lista
     form_class = ListaModelForm
     template_name = 'lista_form.html'
     success_url = reverse_lazy('listas')
     success_message = 'Lista cadastrada com sucesso!'
 
-class ListaUpdateView(SuccessMessageMixin,UpdateView):
+class ListaUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
+    permission_required = 'lista.update_lista'
+    permission_denied_message = 'Editar Lista'
     model = Lista
     form_class = ListaModelForm
     template_name = 'lista_form.html'
     success_url = reverse_lazy('listas')
     success_message = 'Lista alterada com sucesso!'
 
-class ListaDeleteView(SuccessMessageMixin,DeleteView):
+class ListaDeleteView(PermissionRequiredMixin,SuccessMessageMixin,DeleteView):
+    permission_required = 'lista.delete_lista'
+    permission_denied_message = 'Deletar Lista'
     model = Lista
     template_name = 'lista_apagar.html'
     success_url = reverse_lazy('listas')
     success_message = 'Lista cadastrada com sucesso!'
 
-class ListaInlineEditView(TemplateResponseMixin,View):
+class ListaInlineEditView(PermissionRequiredMixin,TemplateResponseMixin,View):
     template_name = 'lista_form_inline.html'
 
     def get_formset(self, data=None):

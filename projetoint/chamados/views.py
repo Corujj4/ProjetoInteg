@@ -1,5 +1,5 @@
-from django.shortcuts import reverse
 
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
@@ -8,15 +8,13 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib import messages
-from django.views.generic.base import TemplateResponseMixin, View
-
-import produtos.views
 from chamados.forms import ChamadoModelForm
 from chamados.models import Chamado
-from produtos.views import RoupaDeleteView
 
 
-class ChamadoView(ListView):
+class ChamadoView(PermissionRequiredMixin,ListView):
+    permission_required = 'chamado.view.chamado'
+    permission_denied_message = 'Visualizar Chamados'
     model = Chamado
     template_name = 'chamados.html'
 
@@ -37,7 +35,9 @@ class ChamadoView(ListView):
             return messages.info(self.request,'Nao existem chamados cadastrados.')
 
 
-class ChamadoAddView(SuccessMessageMixin,CreateView):
+class ChamadoAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
+    permission_required = 'chamado.add.chamado'
+    permission_denied_message = 'Adicionar Chamados'
     model = Chamado
     form_class = ChamadoModelForm
     template_name = 'chamado_form.html'
@@ -46,7 +46,7 @@ class ChamadoAddView(SuccessMessageMixin,CreateView):
 
     def form_valid(self, form):
         chamado = form.save()
-        self.enviar_emailinicio(chamado)
+        '''self.enviar_emailinicio(chamado)'''
         return super().form_valid(form)
 
     def enviar_emailinicio(self, chamado):
@@ -74,13 +74,17 @@ class ChamadoAddView(SuccessMessageMixin,CreateView):
         )
 
 
-class ChamadoDeleteView(SuccessMessageMixin,DeleteView):
+class ChamadoDeleteView(PermissionRequiredMixin,SuccessMessageMixin,DeleteView):
+    permission_required = 'chamado.delete.chamado'
+    permission_denied_message = 'Deletar Chamados'
     model = Chamado
     template_name = 'chamado_apagar.html'
     success_url = reverse_lazy('chamado')
     success_message = 'Chamado deletado com sucesso!'
 
-class ChamadoUpdateView(SuccessMessageMixin,UpdateView):
+class ChamadoUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
+    permission_required = 'chamado.update.chamado'
+    permission_denied_message = 'Editar Chamados'
     model = Chamado
     form_class = ChamadoModelForm
     template_name = 'chamado_form.html'
@@ -88,7 +92,9 @@ class ChamadoUpdateView(SuccessMessageMixin,UpdateView):
     success_message = 'Chamado editado com sucesso!'
 
 
-class ChamadoExibir(DetailView):
+class ChamadoExibir(PermissionRequiredMixin,DetailView):
+    permission_required = 'chamado.view.chamado'
+    permission_denied_message = 'Visualizar Chamados'
     model = Chamado
     template_name = 'chamado_exibir.html'
 
@@ -98,7 +104,7 @@ class ChamadoExibir(DetailView):
         email =[]
         email.append(chamado.funcionario.email)
         email.append(chamado.vitima.email)
-        dados = {
+        dados = {-
             'funcionario': chamado.funcionario.nome,
             'vitima': chamado.vitima.nome,
             'produto':chamado.produto.nome,
@@ -131,7 +137,7 @@ class ChamadoExibir(DetailView):
                 produto = chamado.produto
                 chamado.status = 'Finalizado'
                 chamado.save()
-                self.enviar_email(chamado)
+                '''self.enviar_email(chamado)'''
                 produto.delete()
 
                 return chamado

@@ -140,3 +140,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'raphaelsiqueiradesouza@gmail.com'
 EMAIL_HOST_PASSWORD = 'oojm afab vrso jwbd'
 DEFAULT_FROM_EMAIL = 'trabalho'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'
