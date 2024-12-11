@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 # Create your views here.
 
 class ProdutoView(PermissionRequiredMixin,ListView):
-    permission_required = 'produto.view_produto'
+    permission_required = 'produtos.view_produtos'
     permission_denied_message = 'Visualizar produto'
     model = Produtos
     template_name = 'produtos.html'
