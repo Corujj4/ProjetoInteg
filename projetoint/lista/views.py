@@ -58,7 +58,7 @@ class ListaDeleteView(PermissionRequiredMixin,SuccessMessageMixin,DeleteView):
     success_url = reverse_lazy('listas')
     success_message = 'Lista cadastrada com sucesso!'
 
-class ListaInlineEditView(PermissionRequiredMixin,TemplateResponseMixin,View):
+class ListaInlineEditView(TemplateResponseMixin,View):
     template_name = 'lista_form_inline.html'
 
     def get_formset(self, data=None):
