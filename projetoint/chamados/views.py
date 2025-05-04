@@ -13,7 +13,7 @@ from chamados.models import Chamado
 
 
 class ChamadoView(PermissionRequiredMixin,ListView):
-    permission_required = 'chamado.view.chamado'
+    permission_required = 'chamados.view_chamado'
     permission_denied_message = 'Visualizar Chamados'
     model = Chamado
     template_name = 'chamados.html'
@@ -36,7 +36,7 @@ class ChamadoView(PermissionRequiredMixin,ListView):
 
 
 class ChamadoAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
-    permission_required = 'chamado.add_chamado'
+    permission_required = 'chamados.add_chamado'
     permission_denied_message = 'Adicionar Chamados'
     model = Chamado
     form_class = ChamadoModelForm
@@ -75,7 +75,7 @@ class ChamadoAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
 
 
 class ChamadoDeleteView(PermissionRequiredMixin,SuccessMessageMixin,DeleteView):
-    permission_required = 'chamado.delete_chamado'
+    permission_required = 'chamados.delete_chamado'
     permission_denied_message = 'Deletar Chamados'
     model = Chamado
     template_name = 'chamado_apagar.html'
@@ -83,7 +83,7 @@ class ChamadoDeleteView(PermissionRequiredMixin,SuccessMessageMixin,DeleteView):
     success_message = 'Chamado deletado com sucesso!'
 
 class ChamadoUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
-    permission_required = 'chamado.update_chamado'
+    permission_required = 'chamados.change_chamado'
     permission_denied_message = 'Editar Chamados'
     model = Chamado
     form_class = ChamadoModelForm
@@ -93,7 +93,7 @@ class ChamadoUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
 
 
 class ChamadoExibir(PermissionRequiredMixin,DetailView):
-    permission_required = 'chamado.view_chamado'
+    permission_required = 'chamados.view_chamado'
     permission_denied_message = 'Visualizar Chamados'
     model = Chamado
     template_name = 'chamado_exibir.html'

@@ -42,7 +42,7 @@ class FuncionarioAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView)
     success_message = 'Funcionario cadastrado com sucesso!'
 
 class FuncionarioUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
-    permission_required = 'funcionario.update_funcionario'
+    permission_required = 'funcionario.change_funcionario'
     permission_denied_message = 'Editar funcionario'
     model = Funcionario
     form_class = FuncionarioModelForm

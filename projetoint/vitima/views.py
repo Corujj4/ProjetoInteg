@@ -42,7 +42,7 @@ class VitimaAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
     success_message = 'Vitima cadastrado com sucesso!'
 
 class VitimaUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
-    permission_required = 'vitima.update_vitima'
+    permission_required = 'vitima.change_vitima'
     permission_denied_message = 'Editar vitima'
     model = Vitima
     form_class = VitimaModelForm

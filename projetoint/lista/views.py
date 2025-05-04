@@ -42,7 +42,7 @@ class ListaAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
     success_message = 'Lista cadastrada com sucesso!'
 
 class ListaUpdateView(PermissionRequiredMixin,SuccessMessageMixin,UpdateView):
-    permission_required = 'lista.update_lista'
+    permission_required = 'lista.change_lista'
     permission_denied_message = 'Editar Lista'
     model = Lista
     form_class = ListaModelForm
