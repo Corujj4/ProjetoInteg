@@ -46,7 +46,7 @@ class ChamadoAddView(PermissionRequiredMixin,SuccessMessageMixin,CreateView):
 
     def form_valid(self, form):
         chamado = form.save()
-        '''self.enviar_emailinicio(chamado)'''
+        self.enviar_emailinicio(chamado)
         return super().form_valid(form)
 
     def enviar_emailinicio(self, chamado):
@@ -104,7 +104,7 @@ class ChamadoExibir(PermissionRequiredMixin,DetailView):
         email =[]
         email.append(chamado.funcionario.email)
         email.append(chamado.vitima.email)
-        dados = {-
+        dados = {
             'funcionario': chamado.funcionario.nome,
             'vitima': chamado.vitima.nome,
             'produto':chamado.produto.nome,
@@ -137,7 +137,7 @@ class ChamadoExibir(PermissionRequiredMixin,DetailView):
                 produto = chamado.produto
                 chamado.status = 'Finalizado'
                 chamado.save()
-                '''self.enviar_email(chamado)'''
+                self.enviar_email(chamado)
                 produto.delete()
 
                 return chamado
